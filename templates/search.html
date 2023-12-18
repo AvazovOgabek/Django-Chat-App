@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <link rel="stylesheet" href="{% static 'css/search.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+    <button class="go-back-button"><i class="fa fa-arrow-left"></i><a href="{% url 'home' %}">Go Back</a></button>
+
+<body class="dark-mode">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="search-container">
+            <input type="text" placeholder="Search..." class="search-input" name="username">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+
+
+  {% if profile %} 
+    <div class="search-results">
+        {% if profile.user.username != user.username %}
+
+            <a href="{% url 'profile_detail' profile.pk %}">
+
+                <ul>
+                    <li>
+                        <img src="{{ profile.profile_img.url }}" alt="User Image" class="profile-img" >
+                        <div class="result-info">
+                            <p>{{ profile.user }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </a>
+        {% else %}
+            <a href="{% url 'my_profile' %}">
+                <ul>
+                    <li>
+                        <img src="{{ profile.profile_img.url }}" alt="User Image" class="profile-img" >
+                        <div class="result-info">
+                            <p>{{ profile.user }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

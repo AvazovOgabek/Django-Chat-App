@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="{% static 'css/profile_detail.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <button class="go-back-button"><i class="fa fa-arrow-left"></i><a href="{% url 'home' %}">Go Back</a></button>
+
+  <div class="profile-container">
+    
+    <div class="profile-header">
+      <h1>User Profile</h1>
+      <img src="{{ profile.profile_img.url }}" alt="Profile Picture">
+    </div>
+    <div class="profile-details">
+      <h2>Profile Details</h2>
+      <ul>
+        <li><strong>Username:</strong> {{ profile.user }}</li>
+        <li><strong>Email:</strong>{{ profile.email }}</li>
+        <li><strong>Bio:</strong>{{ profile.bio }}</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

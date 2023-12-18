@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+  <div class="telegram">
+    <header class="telegram-header">
+      <a href="{% url 'my_profile' %}">
+        <div class="user-profile">
+            <img src="{{ my_profile.profile_img.url }}" alt="Profile Picture">
+            <span>{{ my_profile.first_name }} {{ my_profile.last_name }}</span>
+        </div>
+      </a>
+      <a href="{% url 'search' %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+      </a>
+    </header>
+    <hr>
+    <main class="telegram-main">
+      <aside class="chat-list">
+        <h2>Chats</h2>
+            {% for chat in chats %}
+                <ul class="chat-items">
+                    <a href="{% url 'chat' chat.pk %}">
+                        {% if chat.person.user != user  %}
+                            <li>
+                                <img src="{{ chat.person.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
+                                {{chat.person.first_name}}
+                            </li>
+                        {% else %}
+                            <li>
+                                <img src="{{ chat.you.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
+                                {{chat.you.first_name}}
+                            </li>
+                            
+                        {% endif %}
+
+                    </a>
+                </ul>
+            {% endfor %}
+      </aside>
+      <div class="chat-area">
+      </div>
+    </main>
+  </div>
+  <script src="{% static 'js/img.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #19232d;
+    color: #dcdde1;
+    line-height: 1.6;
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2f3640, #353b48);
+    color: #dcdde1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 32px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-header h1:hover {
+    transform: scale(1.05);
+}
+
+.profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #3498db;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-header img:hover {
+    transform: scale(1.1);
+}
+
+.profile-details h2 {
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.profile-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-details li {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.profile-details li strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: #2980b9;
+}
+
+.hr-line {
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 20px 0;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #2f3640;
+    color: #dcdde1;
+    transition: border-color 0.3s, transform 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    transform: scale(1.02);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+::placeholder {
+    color: #718093;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4a5160;
+    border-radius: 6px;
+}
+
+.custom-container {
+    background-color: #2f3640;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: rotateX(-10deg);
+}
+
+.start-chat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #19232d;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.start-chat svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.start-chat-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.start-chat:hover {
+    background-color: #253544;
+}
+
+.start-chat:hover svg {
+    transform: scale(1.1);
+}
+
+.go-back-button {
+    background-color: #19232d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.go-back-button i {
+    margin-right: 5px;
+}
+
+.go-back-button:hover {
+    background-color: #253341;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
