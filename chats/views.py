@@ -14,7 +14,6 @@ def home(request):
 
     return render(request, 'home.html', {'my_profile' : my_profile, 'chats' : chats })
 
-
 @login_required(login_url='signin')
 def search(request):
     user = None
@@ -37,10 +36,17 @@ def profile_detail(request, profile_id):
     
     if request.method == 'POST':
         you = get_object_or_404(Profile, user=request.user)
-        chat_exists = Chat.objects.filter(you=you, person=profile).exists()
-        print(chat_exists)
-        if chat_exists:
+        
+        chat_exists_1 = Chat.objects.filter(you=you, person=profile).exists()
+        chat_exists_2 = Chat.objects.filter(you=profile, person=you).exists()
+
+        
+        if chat_exists_1 or chat_exists_2:
             chat = Chat.objects.get(you=you, person=profile)
+            return redirect('chat', chat_id=chat.id)
+        else:
+            chat = Chat.objects.create(you=you, person=profile)
+            chat.save()
             return redirect('chat', chat_id=chat.id)
     
     return render(request, 'profile_detail.html', {'profile': profile})
@@ -64,8 +70,14 @@ def chat(request, chat_id):
         my_profile = Profile.objects.get(user=request.user)
         chats = Chat.objects.filter(Q(you=my_profile) | Q(person=my_profile))
         
-        return render(request, 'chat.html', {'chat': chat, 'messages': messages, 'my_profile' : my_profile, 'chats' : chats})
+        return render(request, 'chat.html', {'chat': chat, 'messages': messages, 'my_profile' : my_profile, 'chats' : chats, 'chat_id' : chat_id})
 
 def my_profile(request):
     proifle = Profile.objects.get(user=request.user)
     return render(request, 'my_profile.html', {'profile' : proifle})
+
+def delete_chat(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id)
+    chat.delete()
+    return redirect('home')
+

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="{% static 'css/search.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-    <button class="go-back-button"><i class="fa fa-arrow-left"></i><a href="{% url 'home' %}">Go Back</a></button>
+    <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
 
 <body class="dark-mode">
     <form method="post">
@@ -25,7 +25,6 @@
         {% if profile.user.username != user.username %}
 
             <a href="{% url 'profile_detail' profile.pk %}">
-
                 <ul>
                     <li>
                         <img src="{{ profile.profile_img.url }}" alt="User Image" class="profile-img" >

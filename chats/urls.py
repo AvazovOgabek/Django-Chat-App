@@ -7,4 +7,5 @@ urlpatterns = [
     path('profile/<int:profile_id>/', views.profile_detail, name='profile_detail'),
     path('chat/<int:chat_id>/', views.chat, name='chat'),
     path('my-profile/', views.my_profile, name='my_profile'),
+    path('delete-chat/<int:chat_id>/', views.delete_chat, name='delete_chat'),
 ]
