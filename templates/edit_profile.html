@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+</head>
+
+<body>
+    <div class="go-back">
+        <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
+    </div>
+    <div class="profile-card">
+        <div class="profile-picture">
+            <img src="{{profile.profile_img.url}}" alt="Profile Picture">
+        </div>
+        <h1>User's Profile</h1>
+        <form id="editProfileForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="{{ first_name }}" placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="{{ last_name }}" placeholder="Enter your last name">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio" placeholder="Enter your bio">{{ bio }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" name="profile_image">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save Changes">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

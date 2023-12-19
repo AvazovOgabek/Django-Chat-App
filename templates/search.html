@@ -7,8 +7,11 @@
   <link rel="stylesheet" href="{% static 'css/search.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-    <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
 
+  <div class="go-back">
+      <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
+  </div>
+  
 <body class="dark-mode">
     <form method="post">
         {% csrf_token %}

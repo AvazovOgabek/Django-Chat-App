@@ -22,60 +22,64 @@
       </a>
     </header>
     <hr>
-        <div class="card" style="display: none;">
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="122.88" height="122.25" fill="currentColor" class="trash" viewBox="0 0 16 16">
+
+
+<div class="card" style="display:none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="122.88" height="122.25" fill="currentColor" class="trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                 <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-            </svg>
-            <p class="cookieHeading">Delete chat.</p>
-            <p class="cookieDescription">Are you sure you want to delete this chat?</p>
-
-            <div class="buttonContainer">
-                <form method="post" action="{% url 'delete_chat' chat_id=chat_id %} ">
-                    {% csrf_token %}
-                    <button class="acceptButton" type="submit">Delete</button>
-                </form>
-                <button class="declineButton">Cancel</button>
-            </div>
-        </div>
+        </svg>
+    <p class="cookieHeading">Delete chat.</p>
+    <p class="cookieDescription">Are you sure you want to delete this chat?</p>
+    <div class="buttonContainer">
+        <form method="post" action="{% url 'delete_chat' chat_id=chat_id %}">
+            {% csrf_token %}
+            <button class="acceptButton" type="submit">Delete</button>
+        </form>
+        <button class="declineButton" onclick="hideCard()">Cancel</button>
     </div>
+</div>
 
     <main class="telegram-main">
       <aside class="chat-list">
         <h2>Chats</h2>
             {% for chat in chats %}
                 <ul class="chat-items">
-                    <a href="{% url 'chat' chat.pk %}">
-                        {% if chat.person.user != user  %}
-                            {% if chat.id == chat_id %}
-                                <li class="active">
-                                    <img src="{{ chat.person.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
-                                    <p>{{chat.person.first_name}}</p>
-
-                                </li>
-                            {% else %}
-                                <li>
-                                    <img src="{{ chat.person.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
-                                    <p>{{chat.person.first_name}}</p>
-
-                                </li>     
-                            {% endif %}
-                                
+                    {% if chat.person.user != user  %}
+                        {% if chat.id == chat_id %}
+                            <li class="active">
+                                <a href="{% url 'profile_detail' chat.person.pk %}">
+                                    <img src="{{ chat.person.profile_img.url }}" alt="{{chat.person.first_name}}" class="profile-img">
+                                </a>
+                                <p>{{chat.person.first_name}}</p>
+                            </li>
                         {% else %}
-                            {% if chat.id == chat_id %}
-                                <li class="active">
-                                    <img src="{{ chat.you.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
-                                    <p>{{chat.you.first_name}}</p>
-                                </li>
-                            {% else %}
+                            <a href="{% url 'chat' chat.pk %}">
                                 <li>
-                                    <img src="{{ chat.you.profile_img.url }}" alt="Robert Johnson's Profile Image" class="profile-img">
+                                    <img src="{{ chat.person.profile_img.url }}" alt="{{chat.person.first_name}}" class="profile-img">
+                                    <p>{{chat.person.first_name}}</p>
+                                </li>     
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        {% if chat.id == chat_id %}
+                            <li class="active">
+                                <a href="{% url 'profile_detail' chat.you.pk %}">
+
+                                    <img src="{{ chat.you.profile_img.url }}" alt="{{chat.you.first_name}}" class="profile-img">
+                                </a>
+                                <p>{{chat.you.first_name}}</p>
+                            </li>
+                        {% else %}
+                            <a href="{% url 'chat' chat.pk %}">
+                                <li>
+                                    <img src="{{ chat.you.profile_img.url }}" alt="{{chat.you.first_name}}" class="profile-img">
                                     <p>{{chat.you.first_name}}</p>
                                 </li>
-                            {% endif %}
+                            </a>
                         {% endif %}
-                    </a>
+                    {% endif %}
                 </ul>
             {% endfor %}
       </aside>

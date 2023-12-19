@@ -9,8 +9,9 @@
 
 </head>
 <body>
-    <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
-
+  <div class="go-back">
+      <a href="{% url 'home' %}"><button class="go-back-button"><i class="fa fa-arrow-left"></i>Go Back</button></a>
+  </div>
 
   <div class="profile-container">
     
@@ -21,6 +22,8 @@
     <div class="profile-details">
       <h2>Profile Details</h2>
       <ul>
+        <li><strong>First name:</strong> {{ profile.first_name }}</li>
+        <li><strong>Last name:</strong> {{ profile.last_name }}</li>
         <li><strong>Username:</strong> {{ profile.user }}</li>
         <li><strong>Email:</strong>{{ profile.email }}</li>
         <li><strong>Bio:</strong>{{ profile.bio }}</li>

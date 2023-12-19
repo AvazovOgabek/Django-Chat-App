@@ -31,6 +31,7 @@ def search(request):
         user = User.objects.none()
     return render(request, 'search.html', {'user': user})
 
+@login_required(login_url='signin')
 def profile_detail(request, profile_id):
     profile = get_object_or_404(Profile, pk=profile_id)
     
@@ -51,6 +52,7 @@ def profile_detail(request, profile_id):
     
     return render(request, 'profile_detail.html', {'profile': profile})
 
+@login_required(login_url='signin')
 def chat(request, chat_id):  
     if request.method == 'POST':
         content = request.POST.get('content')
@@ -72,12 +74,37 @@ def chat(request, chat_id):
         
         return render(request, 'chat.html', {'chat': chat, 'messages': messages, 'my_profile' : my_profile, 'chats' : chats, 'chat_id' : chat_id})
 
+@login_required(login_url='signin')
 def my_profile(request):
     proifle = Profile.objects.get(user=request.user)
     return render(request, 'my_profile.html', {'profile' : proifle})
 
+@login_required(login_url='signin')
 def delete_chat(request, chat_id):
     chat = get_object_or_404(Chat, id=chat_id)
     chat.delete()
     return redirect('home')
+
+@login_required(login_url='signin')
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        bio = request.POST.get('bio')
+        last_name = request.POST.get('last_name')
+        first_name = request.POST.get('first_name')
+        profile_image = request.FILES.get('profile_image')
+        
+        if profile_image:
+            profile.profile_img = profile_image
+        if bio:
+            profile.bio = bio
+        if last_name:
+            profile.last_name = last_name
+        if first_name:
+            profile.first_name = first_name
+        
+        profile.save()
+        return redirect('my_profile')  
+
+    return render(request, 'edit_profile.html', {'profile': profile})
 

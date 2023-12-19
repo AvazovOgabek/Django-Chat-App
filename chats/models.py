@@ -10,6 +10,5 @@ class Message(models.Model):
     profile = models.ForeignKey(Profile, related_name='sent_messages', on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True)  # For text messages
     image = models.ImageField(upload_to='message_images', blank=True, null=True)  
-
     timestamp = models.DateTimeField(auto_now_add=True)
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
